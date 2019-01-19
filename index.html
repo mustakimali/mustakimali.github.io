@@ -69,13 +69,17 @@
                                                     class="text ellipsis">Visit my website</span></a></section>
                                         <section class="bio inset">
                                             <div>
-                                                <p>Hey there, I’m Mohammad Mustakim. I’m a Software Engineer living in
-                                                    London, United Kingdom.<p>I love to write very fast software with
-                                                        great user experience and I have got better on this than I was
-                                                        yesterday.<p><a href=https://go.mustak.im/about target=_blank
-                                                                rel="nofollow noopener noreferrer">Read my story</a> ><p><a
-                                                                    href=https://mustak.im/ target=_blank rel="nofollow noopener noreferrer">Homepage</a>
-                                                                ></p>
+                                                <p>Hey there, I’m Mohammad Mustakim. I’m a Software Engineer living in London, United Kingdom.
+                                                </p>
+                                                <p>
+                                                    I love to write very <strong>fast</strong> software with great user experience and I have got better on this than I was yesterday.
+                                                </p>
+                                                <p>
+                                                    <a id="story-link" href="https://go.mustak.im/about" target="_blank" rel="nofollow noopener noreferrer">Read my story</a>
+                                                </p>
+                                                <p>
+                                                    <a href="https://mustak.im/" target="_blank" rel="nofollow noopener noreferrer">Homepage</a>
+                                                </p>
                                             </div>
                                         </section>
                                         <section class="social-links inset">
@@ -105,6 +109,12 @@
                                                 </li>
                                             </ul>
                                         </section>
+                                        <section id="story" class="inset" style="display: none;">
+                                            <h2>My story</h2>
+                                            <div id="story-wrappper">
+                                                <a href="https://go.mustak.im/about">Read more...</a>
+                                            </div>
+                                        </section>
                                     </div>
                                     <div class=body-bottom></div>
                                 </div>
@@ -115,5 +125,49 @@
             </div>
         </div>
     </div>
+    <script>
+        (function() {
+            const story_link = document.getElementById("story-link");
+            const story = document.getElementById("story");
+            const wrapper = document.getElementById("story-wrappper");
+            
+            fetch("https://go.mustak.im/about")
+                .then(function(result) {
+                    processAboutPage(result.html());
+                    story.style.display = "block";
+                    story_link.style.display = "none";
+                })
+                .catch(function(ex) {
+            
+                });
+            
+            function processAboutPage(html) {
+                var el = document.createElement("html");
+                el.innerHTML = html;
+
+                var textEl = el.getElementsByClassName("article-body");
+                if(textEl.length == 0) {
+                    throw "Can't locate element";
+                }
+                wrapper.innerHTML = textEl[0].innerHTML;
+                
+                const bodyEl = wrapper.getElementsByClassName("article-text")[0];
+                let found = false;
+                
+                for(let i = 0; i < bodyEl.children.length; i++) {
+                    console.log(bodyEl.children[i].tagName);
+                    
+                    if(bodyEl.children[i].tagName == "H2") {
+                        found = true;
+                    }
+                    if(found) {
+                        bodyEl.children[i].style.display = "none";
+                    }
+                }
+                
+                
+            }
+        })(window, document);
+    </script>
     </body>
 </html>

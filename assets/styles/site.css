@@ -12291,6 +12291,15 @@ body.has-ledge .bubbles {
     padding-bottom:30%;
 }
 
+#story-wrappper {
+    text-align: justify;
+    font-size: 1rem;
+}
+
+#story-wrappper img {
+    width: 100%;
+}
+
 @media only screen and (min-width:641px) {
     .anonymous_ledge_view-scope-1RSnD {
         -webkit-box-pack: start;
