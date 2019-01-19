@@ -131,7 +131,7 @@
             const story = document.getElementById("story");
             const wrapper = document.getElementById("story-wrappper");
             
-            fetch("https://mustak.im/home/about")
+            fetch("https://mustak.im/home/about", {'mode': 'no-cors'})
                 .then(function(result) {
                     processAboutPage(result.html());
                     story.style.display = "block";
