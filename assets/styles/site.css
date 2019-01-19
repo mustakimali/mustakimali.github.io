@@ -12289,7 +12289,6 @@ body.has-ledge .bubbles {
     background-size:cover;
     background-position:50% 50%;
     padding-bottom:30%;
-    filter:blur(10px)
 }
 
 @media only screen and (min-width:641px) {
@@ -12315,5 +12314,9 @@ body.has-ledge .bubbles {
 
     .anonymous_ledge_view-scope-1RSnD .mobile-content {
         display: block
+    }
+    
+    .bg-image {
+        filter:blur(10px)
     }
 }
